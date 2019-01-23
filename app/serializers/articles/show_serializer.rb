@@ -1,4 +1,4 @@
-class Articles::IndexSerializer < ActiveModel::Serializer
+class Articles::ShowSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
 
     attributes :id, :title, :description, :content, :image, :created_at

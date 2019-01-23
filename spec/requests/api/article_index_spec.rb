@@ -54,5 +54,27 @@ RSpec.describe 'Article index', type: :request do
                 expect(expected_url).to match(/attachment.png/)
             end
         end
+
+        context 'specific specs' do
+            let(:user) { create(:user, email: 'member@mail.com') }
+            let(:category) { create(:category, name: 'Sports') }
+            let!(:published_article) { create(:article, id:1, title: 'My first article', content: 'It is about sports', user: user, category: category, published: true )}
+            let!(:unpublished_article) { create(:article, id:2, title: 'My second article', user: user, category: category, published: false  )}
+
+            before do
+                get '/api/articles/1'
+                
+            end
+            
+            it 'returns 200' do
+                expect(response).to have_http_status(200)
+            end
+
+            it 'returns 1 article' do
+                binding.pry
+                expect(response_json['articles'].count).to eq 1
+            end
+        end
+
     end
 end
