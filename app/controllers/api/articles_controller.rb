@@ -6,7 +6,7 @@ class Api::ArticlesController < ApplicationController
 
     def show
         article = Article.find(params[:id])
-        render json: article, each_serializer: Articles::ShowSerializer
+        render json: article, serializer: Articles::ShowSerializer
     end
-  
+
 end
